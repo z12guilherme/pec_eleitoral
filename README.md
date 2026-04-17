@@ -1,5 +1,7 @@
 # PEC da Governança | Revolução na Gestão Pública 🇧🇷
 
+**🔗 Acesso ao Site Oficial:** [https://z12guilherme.github.io/pec_eleitoral/](https://z12guilherme.github.io/pec_eleitoral/)
+
 Este repositório contém o código-fonte do site oficial da **PEC da Governança**, uma Proposta de Emenda à Constituição inédita que visa instituir um novo Ciclo de Governança, Blindagem Técnica e Transparência Total na política brasileira.
 
 ## 🎯 O Propósito
