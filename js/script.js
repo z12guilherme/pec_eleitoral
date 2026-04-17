@@ -113,6 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             const formData = new FormData(sigForm);
+
+            // Truque: Enviar a cidade também com o nome "email" para driblar o cache do Google
+            formData.append('email', formData.get('cidade'));
+
             // Converte os dados para o formato que o Google Sheets entende perfeitamente
             const data = new URLSearchParams(formData);
 
