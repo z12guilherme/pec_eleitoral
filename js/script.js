@@ -104,8 +104,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Integracao do Formulario de Assinatura com Google Sheets
     const sigForm = document.getElementById('signature-form');
     if (sigForm) {
+        // Anti-spam: Verifica se o usuário já assinou recentemente neste navegador
+        if (localStorage.getItem('pecAssinada') === 'true') {
+            sigForm.style.display = 'none';
+            const successMsg = document.getElementById('signature-success');
+            successMsg.style.display = 'block';
+            successMsg.innerHTML = '<i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>Você já assinou a petição. Muito obrigado pelo seu apoio!';
+        }
+
         sigForm.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            // Validação extra: Impede telefones inválidos/curtos (Ex: "123")
+            const phoneInput = document.getElementById('sig-phone').value;
+            if (phoneInput.replace(/\D/g, '').length < 10) {
+                alert('Por favor, insira um número de WhatsApp válido com DDD (mínimo de 10 dígitos).');
+                return;
+            }
 
             const submitBtn = sigForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
@@ -127,6 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => {
                     sigForm.style.display = 'none';
                     document.getElementById('signature-success').style.display = 'block';
+
+                    // Anti-spam: Grava no navegador (LocalStorage) que o usuário já assinou
+                    localStorage.setItem('pecAssinada', 'true');
                 })
                 .catch(error => {
                     console.error('Erro!', error.message);
