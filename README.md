@@ -16,8 +16,10 @@ O site é composto por páginas estáticas focadas em clareza, responsividade e 
 
 - `index.html`: Landing page principal apresentando a proposta, os pilares, perguntas frequentes (FAQ) e o formulário de petição para apoio. Possui uma funcionalidade de alternância de linguagem (Modo Popular vs. Modo Jurídico).
 - `pec.html`: Página dedicada à leitura do texto oficial da PEC na íntegra, dividida entre uma seção técnica e um resumo voltado para a imprensa e redes sociais.
+- `dashboard.html`: Painel para exibição pública da quantidade total de assinaturas coletadas em tempo real.
 - `css/style.css`: Estilização global da página, utilizando variáveis CSS, Flexbox e Grid para layout responsivo.
 - `js/script.js`: Scripts para o funcionamento do botão de alternância de perspectiva (Popular/Jurídico), animações e validação do formulário de assinaturas.
+- `js/dashboard.js`: Script responsável por consumir os dados do Google Apps Script e exibir a contagem de assinaturas.
 - `assets/`: Diretório destinado ao armazenamento de arquivos para download (ex: `slides.pptx`, `documento_pec.pdf`).
 
 ## 🚀 Como Executar Localmente
