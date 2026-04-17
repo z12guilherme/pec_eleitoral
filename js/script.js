@@ -113,11 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             const formData = new FormData(sigForm);
+            // Converte os dados para o formato que o Google Sheets entende perfeitamente
+            const data = new URLSearchParams(formData);
 
             // ATENÇÃO: Substitua a URL abaixo pela URL gerada no seu Google Apps Script!
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzvrK7zxHTzWcXlsrOEmvjrmOl9TmdbVIl8nF4CcyPQy3N_7-2knx5M7HcD9qkYd4kSDA/exec';
 
-            fetch(scriptURL, { method: 'POST', body: formData })
+            fetch(scriptURL, { method: 'POST', body: data })
                 .then(response => {
                     sigForm.style.display = 'none';
                     document.getElementById('signature-success').style.display = 'block';
