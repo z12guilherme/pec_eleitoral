@@ -101,13 +101,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Formulario de Assinatura
+    // Integracao do Formulario de Assinatura com Google Sheets
     const sigForm = document.getElementById('signature-form');
     if (sigForm) {
         sigForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            sigForm.style.display = 'none';
-            document.getElementById('signature-success').style.display = 'block';
+
+            const submitBtn = sigForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(sigForm);
+
+            // ATENÇÃO: Substitua a URL abaixo pela URL gerada no seu Google Apps Script!
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzvrK7zxHTzWcXlsrOEmvjrmOl9TmdbVIl8nF4CcyPQy3N_7-2knx5M7HcD9qkYd4kSDA/exec';
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    sigForm.style.display = 'none';
+                    document.getElementById('signature-success').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Erro!', error.message);
+                    submitBtn.textContent = 'Ocorreu um erro. Tente novamente.';
+                    submitBtn.disabled = false;
+                });
         });
     }
 });
