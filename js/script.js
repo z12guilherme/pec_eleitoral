@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             const data = contentData[mode];
-            
+
             document.getElementById('hero-title').innerHTML = data.heroTitle;
             document.getElementById('hero-desc').textContent = data.heroDesc;
             document.getElementById('cycle-title').textContent = data.cycleTitle;
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             toggleBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             const mode = btn.getAttribute('data-mode');
             updateContent(mode);
         });
@@ -100,4 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Formulario de Assinatura
+    const sigForm = document.getElementById('signature-form');
+    if (sigForm) {
+        sigForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            sigForm.style.display = 'none';
+            document.getElementById('signature-success').style.display = 'block';
+        });
+    }
 });
